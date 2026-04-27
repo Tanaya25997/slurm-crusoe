@@ -6,6 +6,16 @@ terraform {
     }
 }
 
-locals {
-    ssh_key = file("~/.ssh/id_ed25519.pub")  # replace with ur ssh key 
+provider "crusoe" {
+    profile = var.profile
 }
+
+locals {
+    ssh_key = file(var.ssh_public_key_path)  # replace with ur ssh key 
+}
+
+
+
+
+
+
