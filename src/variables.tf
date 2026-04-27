@@ -5,10 +5,8 @@ variable "ssh_public_key_path" {
 
 variable "cup_worker_count" {
     description = "Number of cpu workers"
-    type = int
+    type = number
 }
-
-
 
 variable "profile" {
     description = "crusoe porfile"

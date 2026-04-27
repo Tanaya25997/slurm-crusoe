@@ -19,27 +19,32 @@ resource "crusoe_vpc_subnet" "slurm_subnet" {
 ## firewalll rules 
 
 resource "crusoe_vpc_firewall_rule" "icmp" {
-    name = "allow_icmp_slurm_network"
+    name = "allow-icmp-slurm-network"
     network = crusoe_vpc_network.slurm_network.id
     action = "allow"
     direction = "ingress"
     protocols = "icmp"
     source = crusoe_vpc_subnet.slurm_subnet.cidr
+    source_ports = ""
     destination = crusoe_vpc_subnet.slurm_subnet.cidr
+    destination_ports = ""
 }
 
 resource "crusoe_vpc_firewall_rule" "icmp_egress" {
-    name = "allow_icmp_egress_slurm_network_egress"
+    name = "allow-icmp-egress-slurm-network-egress"
     network = crusoe_vpc_network.slurm_network.id
     action = "allow"
     direction = "egress"
     protocols = "icmp"
+    source = crusoe_vpc_subnet.slurm_subnet.cidr
+    source_ports = ""
     destination = "0.0.0.0/0"
+    destination_ports = ""
 }
 
 
 resource "crusoe_vpc_firewall_rule" "tcp_udp" {
-    name = "allow_tcp_udp_slurm_network"
+    name = "allow-tcp-udp-slurm-network"
     network = crusoe_vpc_network.slurm_network.id
     action = "allow"
     direction = "ingress"
@@ -52,7 +57,7 @@ resource "crusoe_vpc_firewall_rule" "tcp_udp" {
 
 
 resource "crusoe_vpc_firewall_rule" "tcp_udp_egress" {
-    name = "allow_tcp_udp_egress_slurm_network"
+    name = "allow-tcp-udp-egress-slurm-network"
     network = crusoe_vpc_network.slurm_network.id
     action = "allow"
     direction = "egress"
